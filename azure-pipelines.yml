@@ -1,7 +1,35 @@
-name: single stage
 trigger: none
 pool: default
 stages:
-  - stage: 
+-  stage: stage1
+   displayName: Terrafrom
+   jobs:
+   - job: job1
+     displayName: Terrafrom Install
+     steps:
+     - task: TerraformInstaller@1
+       inputs:
+         terraformVersion: 'latest'
+   -  job: job2
+      dependsOn: job1
+      displayName: Terraform init
+      steps:
+      - task: TerraformTask@5
+        inputs:
+          provider: 'azurerm'
+          command: 'init'
+          backendServiceArm: 'Azure subscription 1(29a3f52d-be41-4c3d-9f54-e5e0210dfe4b)'
+          backendAzureRmResourceGroupName: 'duapp'
+          backendAzureRmStorageAccountName: 'duappstg'
+          backendAzureRmContainerName: 'containerdu'
+          backendAzureRmKey: 'terraform.tfstate'
+   -  job: job3
+      dependsOn: job2
+      displayName: terraform Plan
+      steps:
+      - task: TerraformTask@5
+        inputs:
+          provider: 'azurerm'
+          command: 'plan'
 
 
