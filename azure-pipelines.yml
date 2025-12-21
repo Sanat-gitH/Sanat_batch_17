@@ -1,0 +1,7 @@
+name: single stage
+trigger: none
+pool: default
+stages:
+  - stage: 
+
+
