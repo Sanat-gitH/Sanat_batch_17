@@ -2,17 +2,17 @@ trigger: none
 pool: default
 stages:
 -  stage: stage1
-   displayName: Terrafrom
+   displayName: "Terrafrom"
    jobs:
    - job: job1
-     displayName: Terrafrom Install
+     displayName: "Terrafrom Install"
      steps:
      - task: TerraformInstaller@1
        inputs:
          terraformVersion: 'latest'
    -  job: job2
       dependsOn: job1
-      displayName: Terraform init
+      displayName: "Terraform init"
       steps:
       - task: TerraformTask@5
         inputs:
@@ -25,7 +25,7 @@ stages:
           backendAzureRmKey: 'terraform.tfstate'
    -  job: job3
       dependsOn: job2
-      displayName: terraform Plan
+      displayName: "terraform Plan"
       steps:
       - task: TerraformTask@5
         inputs:
