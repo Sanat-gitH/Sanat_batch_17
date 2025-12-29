@@ -31,5 +31,7 @@ stages:
         inputs:
           provider: 'azurerm'
           command: 'plan'
+          environmentServiceNameAzureRM: 'newvivek'
+          
 
 
